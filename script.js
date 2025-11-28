@@ -1,6 +1,7 @@
 // Using NASA's API
 const apiURL = "https://api.nasa.gov/planetary/apod?api_key=8lX7oxoVj2NvzLhqOyZZmhotHUIqkmIzrzgdan0L";
 
+// Fetch NASA Image of the Day
 async function getNASAData() {
   const response = await fetch(apiURL);
   const data = await response.json();
@@ -10,30 +11,26 @@ async function getNASAData() {
   document.getElementById("desc").textContent = data.explanation;
 }
 
-// Wait until the DOM is fully loaded
-window.addEventListener("DOMContentLoaded", () => {
-  // Load NASA data
-  getNASAData();
+// Calling the function 
+getNASAData();
 
-  // Button element
-  const btn = document.getElementById("openNasaBtn");
+//Popmotion spring animation on the Button 
+const btn = document.getElementById("openNasaBtn");
+const { spring } = window.popmotion;
 
-  // Popmotion spring animation
-  const { spring } = window.popmotion;
+// Using spring animation here on the button
+spring({
+  from: { scale: 0.5 },
+  to: { scale: 1 },
+  stiffness: 150,
+  damping: 12,
+  mass: 0.5,
+  onUpdate: latest => {
+    btn.style.transform = `scale(${latest.scale})`;
+  }
+}).start();
 
-  spring({
-    from: { scale: 0.5 },
-    to: { scale: 1 },
-    stiffness: 150,
-    damping: 12,
-    mass: 0.5,
-    onUpdate: latest => {
-      btn.style.transform = `scale(${latest.scale})`;
-    }
-  }).start();
-
-  // Redirect on click
-  btn.addEventListener("click", () => {
-    window.open("https://apod.nasa.gov/apod/astropix.html", "_blank");
-  });
+// Button Click will redirect to NASA's webpage
+btn.addEventListener("click", () => {
+  window.open("https://apod.nasa.gov/apod/astropix.html", "_blank");
 });
