@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Space Explorer</title>
+
+  <!-- Popmotion (older working library) -->
+  <script src="https://unpkg.com/popmotion@8.7.4/dist/popmotion.global.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>🚀 Space Explorer</h1>
+    <p>Fetching NASA's Astronomy Picture of the Day</p>
+  </header>
+
+  <section class="container">
+    <div class="card">
+      <img id="spaceImg" src="" alt="NASA Image of the Day">
+      <h2 id="title"></h2>
+      <p id="desc"></p>
+
+      <button id="animateBtn">Animate Image</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
