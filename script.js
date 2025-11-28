@@ -1,5 +1,5 @@
 // Using NASA's API
-const apiURL = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+const apiURL = "https://api.nasa.gov/planetary/apod?api_key=8lX7oxoVj2NvzLhqOyZZmhotHUIqkmIzrzgdan0L";
 
 async function getNASAData() {
   const response = await fetch(apiURL);
