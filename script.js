@@ -15,7 +15,9 @@ getNASAData();
 // animation
 const { animate } = window.popmotion;
 
-document.getElementById("animateBtn").addEventListener("click", () => {
+document.getElementById("openNasaBtn").addEventListener("click", () => {
+  
+  // Run the animation first
   animate({
     from: { scale: 1 },
     to: { scale: 1.2 },
@@ -23,8 +25,14 @@ document.getElementById("animateBtn").addEventListener("click", () => {
     repeat: 1,
     yoyo: true,
     onUpdate: latest => {
-      document.getElementById("spaceImg").style.transform = 
+      document.getElementById("openNasaBtn").style.transform =
         `scale(${latest.scale})`;
     }
   });
+
+  // After animation starts opens NASA page
+  setTimeout(() => {
+    window.open("https://apod.nasa.gov/apod/astropix.html", "_blank");
+  }, 300); // small delay so animation triggers smoothly
 });
+
