@@ -10,12 +10,16 @@ async function getNASAData() {
   document.getElementById("desc").textContent = data.explanation;
 }
 
-getNASAData();
-
-// Using spring animation here on the button
+// Wait until the DOM is fully loaded
 window.addEventListener("DOMContentLoaded", () => {
-  const { spring } = window.popmotion;
+  // Load NASA data
+  getNASAData();
+
+  // Button element
   const btn = document.getElementById("openNasaBtn");
+
+  // Popmotion spring animation
+  const { spring } = window.popmotion;
 
   spring({
     from: { scale: 0.5 },
@@ -27,9 +31,9 @@ window.addEventListener("DOMContentLoaded", () => {
       btn.style.transform = `scale(${latest.scale})`;
     }
   }).start();
-});
 
-// Button to redirect to NASA website
-document.getElementById("openNasaBtn").addEventListener("click", () => {
-  window.open("https://apod.nasa.gov/apod/astropix.html", "_blank");
+  // Redirect on click
+  btn.addEventListener("click", () => {
+    window.open("https://apod.nasa.gov/apod/astropix.html", "_blank");
+  });
 });
