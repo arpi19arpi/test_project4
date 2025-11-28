@@ -38,8 +38,12 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  display: inline-block;
+  transform-origin: center;
 }
 
 button:hover {
   background: #394fc4;
+  transform: none !important;
 }
+
