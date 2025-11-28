@@ -1,4 +1,4 @@
-// NASA API 
+// Using NASA's API
 const apiURL = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
 
 async function getNASAData() {
@@ -8,31 +8,27 @@ async function getNASAData() {
   document.getElementById("spaceImg").src = data.url;
   document.getElementById("title").textContent = data.title;
   document.getElementById("desc").textContent = data.explanation;
+
+  // Using spring animation here
+  const { spring } = window.popmotion;
+
+  spring({
+    from: { scale: 0.5 },
+    to: { scale: 1 },
+    stiffness: 120,
+    damping: 10,
+    mass: 0.5,
+    onUpdate: latest => {
+      document.getElementById("spaceImg").style.transform =
+        `scale(${latest.scale})`;
+    }
+  }).start();
 }
 
 getNASAData();
 
-// animation
-const { animate } = window.popmotion;
 
+// Button redirects 
 document.getElementById("openNasaBtn").addEventListener("click", () => {
-  
-  // Run the animation first
-  animate({
-    from: { scale: 1 },
-    to: { scale: 1.2 },
-    duration: 800,
-    repeat: 1,
-    yoyo: true,
-    onUpdate: latest => {
-      document.getElementById("openNasaBtn").style.transform =
-        `scale(${latest.scale})`;
-    }
-  });
-
-  // After animation starts opens NASA page
-  setTimeout(() => {
-    window.open("https://apod.nasa.gov/apod/astropix.html", "_blank");
-  }, 300); // small delay so animation triggers smoothly
+  window.open("https://apod.nasa.gov/apod/astropix.html", "_blank");
 });
-
